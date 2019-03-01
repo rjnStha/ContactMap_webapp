@@ -1,0 +1,147 @@
+extends layout
+
+mixin booleanToString(boolData, className)
+    if boolData == true
+        td(class=className)="Yes"
+    else
+        td(class=className)="No"
+
+block content
+    div(class="header") Web Application Development - Final Project
+    
+    div(class = "navigation")
+        form(action="/home")
+            button#submitButton.menumodal-submit(type="submit") Home
+
+        form(action="/contacts")
+            button#submitButton.menumodal-submit(type="submit") Contacts
+        
+        form(action="/mailer")
+            button#submitButton.menumodal-submit(type="submit") Create
+
+    #isNotForm
+
+        div(class = "mainContent")
+
+            input#searchByFirstName( type="text", placeholder="Search by First Name.." class="search")
+            input#searchByLastName( type="text", placeholder="Search by Last Name.." class="search")
+            input#searchByAddress( type="text", placeholder="Search by Address.." class="search")
+                 
+                
+            br
+            br
+
+
+            div.table-responsive
+                table#contactsTable(class="table table-bordered ")
+                    thead
+                        tr
+                            each val in ["Full Name", "Address", "Email", "Phone", "Contact By Mail", "Contact By Phone", "Contact By Email","Edit"]
+                                th= val
+                    
+                    tbody
+                        each contact in all_contacts
+                            tr
+                                - var tempContact = JSON.stringify(contact);
+                                td.contactFullName=contact.title + " " + contact.firstName + " " + contact.lastName
+                                td.contactFullAddress=contact.street + ", " + contact.city + ", " + contact.selectState + ", " + contact.zip
+                                td.contactEmail=contact.email
+                                td.contactPhone=contact.phone
+                                +booleanToString(contact.canMail, "contactCanMail")
+                                +booleanToString(contact.canCall, "contactCanCall")
+                                +booleanToString(contact.canEmail, "contactCanEmail")
+                                td(hidden).latLongData=contact.latlong
+                                td(hidden).databaseId=contact._id
+                                td(class="updateButton btn btn-default success")="Update"
+                                td(class="deleteButton btn btn-default danger")="Delete"
+                                td(hidden).rawContactData= tempContact
+
+        div#map2
+    
+    #isForm
+        div(class = "mainContent")
+
+            form(id="mailerForm2")
+                div
+                    span
+                        label(class="labelFormat") Title:                 
+                    
+                    span
+                        label(for="titleMr2") Mr.
+                        input#titleMr2(type="radio", name="title", value="Mr", checked)
+                    
+                    span    
+
+                        label(for="titleMrs2") Mrs.
+                        input#titleMrs2(type="radio", name="title", value="Mrs")
+                    
+                    span
+                        label(for="titleMs2") Ms.
+                        input#titleMs2(type="radio", name="title", value="Ms")
+                    
+                    span
+                        label(for="titleDr2") Dr.
+                        input#titleDr2(type="radio", name="title", value="Dr")
+
+                div
+                    span
+                        input(placeholder = "First Name*", type="text", name="firstName", id="firstName2", class="formDataFields", required autofocus)
+                    span
+                        input(placeholder = "Last Name*", type="text", name="lastName", id="lastName2", class="formDataFields", required)
+
+                div
+                    span
+                        input(placeholder = "Street",type="text", name="street", id="street2", class="formDataFields")
+                    span
+                        input(placeholder = "City",type="text", name="city", id="city2", class="formDataFields")
+
+                div
+                    span
+                        input#zip2(placeholder = "ZIP",type="text", name="zip", class="formDataFields")
+                    
+                    span
+                        label(for="selectState2" class="labelFormat") State:
+                    
+                    span  
+                        select#selectState2(name="selectState")
+                            - var allStates = [ "AL", "AR", "AZ", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY"];
+                            each state in allStates
+                                option(value=state) #{state}
+
+                
+
+                div
+                    span
+                        input#phone2(placeholder = "Phone",type="text", name="phone", class="formDataFields")
+
+                div
+                    span
+                        input#email2(placeholder = "Email",type="text", name="email", class="formDataFields")
+
+                hr
+
+                div
+                    span
+                        label(for="contactMethod2" class="labelFormat") Your Contact Preference: 
+                
+                div
+                    span
+                        label(for="checkBoxPhone2") Phone:   
+                        input#checkBoxPhone2(type="checkbox", name="checkBoxPhone", value="Phone")
+                    
+                    span
+                        label(for="checkBoxMail2") Mail: 
+                        input#checkBoxMail2(type="checkbox", name="checkBoxMail", value="Mail")
+
+                    span
+                        label(for="checkBoxEmail2") Email:
+                        input#checkBoxEmail2(type="checkbox", name="checkBoxEmail", value="Email") 
+
+                    span
+                        label(for="checkBoxAny2") Any: 
+                        input#checkBoxAny2(type="checkbox", name="checkBoxAny", value="Any")
+
+                div
+                    input(name="databaseId", id="dataBaseId2", type="hidden", value="")
+                
+                button#updateButton.btn.btn-primary.loginmodal-submit(type="button") Update

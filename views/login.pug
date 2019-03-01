@@ -1,0 +1,27 @@
+doctype html
+html
+  head
+    title= "Login page"
+    link(href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css", rel="stylesheet", id="bootstrap-css")
+    script(src="//code.jquery.com/jquery-1.11.1.min.js")
+    script(src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js")
+    link(href="stylesheets/mainStyle.css", rel="stylesheet", type="text/css")
+
+  body
+    block content
+    
+        div(class = "mainContent")  
+            form(action="login", method="post", class="formSignIn")
+                h3 
+                    b Please Sign In
+                br
+                input(type="text", name="username", placeholder="Username", class="formDataFields")
+                input(type="password", name="password", placeholder="Password", class="formDataFields")
+                br
+                br
+                .login-help
+                    a(href="#") Forgot password?
+
+                button(type="submit", name="login", value="Login") Login
+                
+                

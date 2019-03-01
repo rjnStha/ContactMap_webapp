@@ -1,0 +1,18 @@
+extends layout
+
+block content
+    div(class="header") Web Application Development - Final Project
+    
+    div(class = "navigation")
+        form(action="/home")
+            button#submitButton.menumodal-submit(type="submit") Home
+
+        form(action="/contacts")
+            button#submitButton.menumodal-submit(type="submit") Contacts
+        
+        form(action="/mailer")
+            button#submitButton.menumodal-submit(type="submit") Form
+
+    div(class = "mainContent")
+        form(class="homeForm")
+                h1 Thank You!!! Contacts Sucessfully Added!

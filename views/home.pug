@@ -1,0 +1,38 @@
+doctype html
+html
+    head
+        title= "Home page"
+        link(href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css", rel="stylesheet", id="bootstrap-css")
+        script(src="//code.jquery.com/jquery-1.11.1.min.js")
+        script(src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js")
+        link(href="stylesheets/mainStyle.css", rel="stylesheet", type="text/css")
+
+    body
+        block content
+        
+        div(class="header") Web Application Development - Final Project
+        
+        div(class = "navigation")
+
+            form(action="/home")
+                button#submitButton.menumodal-submit(type="submit") Home
+
+            form(action="/contacts")
+                button#submitButton.menumodal-submit(type="submit") Contacts
+            
+            form(action="/mailer")
+                button#submitButton.menumodal-submit(type="submit") Form
+        
+        div(class = "mainContent")
+            form(class="homeForm")
+                h1 Welcome!!
+                li Persistent Contact List
+                li Location (Lat/Long) for Contacts
+                li Mapping Contacts (Contact Info Map Tooltips)
+                li Contact CRUD (Single Page App - CRUD)
+                li Securing the Contacts page
+                li Make it look nice with CSS
+                li Name Search Fields
+                li(class = "cross") Location-Based Search
+
+        

@@ -1,0 +1,107 @@
+doctype html
+html
+    head
+        title= "Mailer page"
+        link(href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css", rel="stylesheet", id="bootstrap-css")
+        script(src="//code.jquery.com/jquery-1.11.1.min.js")
+        script(src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js")
+        link(href="stylesheets/mainStyle.css", rel="stylesheet", type="text/css")
+
+    body
+        block content
+        
+        div(class="header") Web Application Development - Final Project
+        
+        div(class = "navigation")
+            form(action="/home")
+                button#submitButton.menumodal-submit(type="submit") Home
+
+            form(action="/contacts")
+                button#submitButton.menumodal-submit(type="submit") Contacts
+
+            form(action="/mailer")
+                button#submitButton.menumodal-submit(type="submit") Form
+
+        div(class = "mainContent")
+            form(action="/mailer", id="mailerForm", method="post")
+                div
+                    span
+                        label(class="labelFormat") Title:                 
+                    span
+                        label(for="titleMr") Mr.
+                        input#titleMr(type="radio", name="title", value="Mr.", checked)
+                    
+                    span    
+                        label(for="titleMrs") Mrs.
+                        input#titleMrs(type="radio", name="title", value="Mrs.")
+                    
+                    span    
+                        label(for="titleMs") Ms.
+                        input#titleMs(type="radio", name="title", value="Ms.")
+                    
+                    span
+                        label(for="titleDr") Dr.
+                        input#titleDr(type="radio", name="title", value="Dr.")
+
+                div
+                    span
+                        input(placeholder = "First Name*", type="text", name="firstName", class="formDataFields", id="firstName" required autofocus)
+                    
+                    span
+                        input(placeholder = "Last Name*", type="text", name="lastName", class="formDataFields", id="lastName" required)
+
+                div
+                    span
+                        input(placeholder = "Street", type="text", name="street", id="street", class="formDataFields")
+
+                    span
+                        input(placeholder = "City",type="text", name="city", id="city", class="formDataFields")
+
+                div
+                    
+                    span
+                        input#zip(placeholder = "ZIP",type="text", name="zip", class="formDataFields")
+                    
+                    span
+                        label(for="selectState" class="labelFormat") State:
+                    
+                    span
+                        select#selectState(name="selectState")
+                            - var allStates = [ "AL", "AR", "AZ", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY"];
+                            each state in allStates
+                                option(value=state) #{state}
+                div
+                    span
+                        input#phone(placeholder = "Phone",type="text", name="phone", class="formDataFields")
+
+                div
+                    span
+                        input#email(placeholder = "Email",type="text", name="email", class="formDataFields")
+
+                hr
+
+                div
+                    span
+                        label(for="contactMethod" class="labelFormat") Your Contact Preference: 
+
+                div
+                    span
+                        label(for="checkBoxPhone") Phone:   
+                        input#checkBoxPhone(type="checkbox", name="checkBoxPhone", value="Phone")
+                    
+                    span
+                        label(for="checkBoxMail") Mail: 
+                        input#checkBoxMail(type="checkbox", name="checkBoxMail", value="Mail")
+                    
+                    span
+                        label(for="checkBoxEmail") Email:
+                        input#checkBoxEmail(type="checkbox", name="checkBoxEmail", value="Email") 
+                    
+                    span
+                        label(for="checkBoxAny") Any: 
+                        input#checkBoxAny(type="checkbox", name="checkBoxAny", value="Any" checked)
+                        
+                div
+                    input(name="databaseId", id="dataBaseId", type="hidden", value="")
+
+                button#submitButton.loginmodal-submit(type="submit") Submit
